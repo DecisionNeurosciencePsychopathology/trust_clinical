@@ -22,8 +22,9 @@ for model = models
     
     close all; %Get rid of extensive gpu memory figs
     
-    %Load i nthe options per model
-    load(sprintf('vba_mfx_input/vba_mfx_input_%s.mat',model{:}))
+    %Load in the options per model -- this should be changed to the file
+    %name?
+    load(sprintf('vba_mfx_input/vba_mfx_input_%s_reordered.mat',model{:}))
     options = vba_df.options;
     
     %Ensure that options.hf (graphic handle) is non exsistent and
@@ -50,9 +51,9 @@ for model = models
     [p_sub,o_sub,p_group,o_group] = VBA_MFX(y,u,f_name,g_name,dim,options);
     
     %Save uncompressed albeit they will be large
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_sub_%s',model{:}),'p_sub', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_sub_%s',model{:}),'o_sub', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_group_%s',model{:}),'p_group', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_group_%s',model{:}),'o_group', '-v7.3')
+    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_sub_reodered_%s',model{:}),'p_sub', '-v7.3')
+    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_sub_reodered_%s',model{:}),'o_sub', '-v7.3')
+    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_group_reodered_%s',model{:}),'p_group', '-v7.3')
+    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_group_reodered_%s',model{:}),'o_group', '-v7.3')
     
 end

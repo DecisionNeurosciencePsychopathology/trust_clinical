@@ -3,7 +3,7 @@ function vba_df=create_vba_mfx_input_trust()
 
 %END HLEP
 
-models = {'f_trust_Qlearn_policy'};
+models = {'f_trust_Qlearn_policy_clinical'};
 
 for model = models
     
@@ -21,6 +21,11 @@ for model = models
         close all; %Remove figures
         id = regexp(vba_file{:}, '[0-9]{4,6}', 'match');
         id = str2double(id{:});
+        
+        %Reorder the multisession y and u inputs for MFX
+        %Note I am going by out.design and assuming that was the order the
+        %subject recieved the contingency!
+        out=remap_trust_inputs(out);
         
         %Initialize temporay dataframe
         tmp_table = table();
@@ -45,3 +50,42 @@ for model = models
     
     save([pwd filesep 'vba_mfx_input/' sprintf('vba_mfx_input_%s',model{:})], 'vba_df');
 end
+
+
+
+function out = remap_trust_inputs(in)
+%Reorganize the y and u to have the same trustee order for every
+%subject the order will be alphabetical b, c, g, n.
+subj_order = in.design;
+alphabet_order = sort(in.design);
+out=in;
+num_trials = 48;
+seq_idx = 1:48:192;
+
+%Do we have any bad subjects?
+if length(in.y)~=192
+    error('Figure out what to do in these situations')
+else
+    %Remap y and u 
+    out.y =nan(size(in.y));
+    out.u =nan(size(in.u));
+    for i = 1:length(alphabet_order)
+       %Find where the contingecy happened
+       idx=find(ismember(subj_order,alphabet_order{i}));
+       start_idx = num_trials*(idx-1)+1;
+       end_idx = num_trials*idx;
+       out.y(:,seq_idx(i):i*num_trials)=in.y(:,start_idx:end_idx);
+       out.u(:,seq_idx(i):i*num_trials)=in.u(:,start_idx:end_idx);
+    end
+end
+       
+        
+       
+       
+
+
+
+
+        
+
+
