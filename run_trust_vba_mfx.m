@@ -51,9 +51,9 @@ for model = models
     [p_sub,o_sub,p_group,o_group] = VBA_MFX(y,u,f_name,g_name,dim,options);
     
     %Save uncompressed albeit they will be large
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_sub_reodered_%s',model{:}),'p_sub', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_sub_reodered_%s',model{:}),'o_sub', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_p_group_reodered_%s',model{:}),'p_group', '-v7.3')
-    save(sprintf('E:/data/sceptic/vba_out/explore_clock/vba_mfx_input/vba_mfx_output_o_group_reodered_%s',model{:}),'o_group', '-v7.3')
+    save(sprintf('E:/data/trust/vba_mfx_input/vba_mfx_output_p_sub_reodered_%s',model{:}),'p_sub', '-v7.3')
+    save(sprintf('E:/data/trust/vba_mfx_input/vba_mfx_output_o_sub_reodered_%s',model{:}),'o_sub', '-v7.3')
+    save(sprintf('E:/data/trust/vba_mfx_input/vba_mfx_output_p_group_reodered_%s',model{:}),'p_group', '-v7.3')
+    save(sprintf('E:/data/trust/vba_mfx_input/vba_mfx_output_o_group_reodered_%s',model{:}),'o_group', '-v7.3')
     
 end
