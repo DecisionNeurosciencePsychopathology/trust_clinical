@@ -42,7 +42,7 @@ for ct = 1:num_of_subjects
     end
     %saving ID, learning_rate, temperature, subject_specific bias, 4
     %trustee_specific biases, model fits (AIC, BIC, R2)
-    model_diag(ct,1:11) = [subject_id, posterior.muTheta, posterior.muPhi(1:2)',posterior.muPhi(find(k_good, 1)), posterior.muPhi(find(k_bad,1)), posterior.muPhi(find(k_neutral, 1)), posterior.muPhi(find(k_computer, 1)), out.fit.AIC, out.fit.BIC, out.fit.R2];
+    model_diag(ct,1:12) = [subject_id, posterior.muTheta, posterior.muPhi(1:2)',posterior.muPhi(find(k_good, 1)), posterior.muPhi(find(k_bad,1)), posterior.muPhi(find(k_neutral, 1)), posterior.muPhi(find(k_computer, 1)), out.fit.AIC, out.fit.BIC, out.fit.R2, out.fit.LL];
     close all;
 end    
    
